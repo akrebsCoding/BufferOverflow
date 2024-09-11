@@ -216,3 +216,47 @@ calc(4, 5)
 3. **Argumente und Register**: Argumente werden in spezifischen Registern gespeichert und Rückgabewerte in `rax`. Register, die von der aufgerufenen Funktion geändert werden können, müssen von der aufrufenden Funktion gesichert werden.
 
 Diese Konzepte sind wichtig, um zu verstehen, wie Funktionen im Speicher verwaltet werden und wie man sicherstellen kann, dass Werte nicht überschrieben werden.
+
+
+# Endianess
+
+**Endianess** beschreibt die Reihenfolge, in der mehrere Bytes (also 8-Bit-Einheiten) eines mehrbyteigen Datenwertes in der Computer-Speicherordnung abgelegt werden. Verschiedene Computerarchitekturen können unterschiedliche Methoden verwenden, um diese Bytes zu speichern, was zu den Begriffen **Little Endian** und **Big Endian** führt.
+
+### Little Endian
+
+In **Little Endian**-Systemen wird der **weniger bedeutende Byte** (Least Significant Byte, LSB) zuerst gespeichert. Das bedeutet, die kleineren Teile des Wertes kommen zuerst im Speicher, während die größeren Teile später gespeichert werden.
+
+**Beispiel:**
+
+Nehmen wir den Wert `0x12345678`. Hier ist `0x78` der weniger bedeutende Teil (Least Significant Byte), und `0x12` ist der bedeutendste Teil (Most Significant Byte).
+
+In einem Little Endian-System wird dieser Wert so gespeichert:
+
+- `0x78` (erstes Byte)
+- `0x56` (zweites Byte)
+- `0x34` (drittes Byte)
+- `0x12` (viertes Byte)
+
+Also im Speicher: `78 56 34 12`.
+
+### Big Endian
+
+In **Big Endian**-Systemen wird der **bedeutendste Byte** (Most Significant Byte, MSB) zuerst gespeichert. Das bedeutet, die größeren Teile des Wertes kommen zuerst im Speicher, während die kleineren Teile später gespeichert werden.
+
+**Beispiel:**
+
+Für den Wert `0x12345678` wird dieser so gespeichert:
+
+- `0x12` (erstes Byte, Most Significant Byte)
+- `0x34` (zweites Byte)
+- `0x56` (drittes Byte)
+- `0x78` (viertes Byte, Least Significant Byte)
+
+Also im Speicher: `12 34 56 78`.
+
+### Zusammenfassung
+
+- **Little Endian**: Die Bytes werden in der Reihenfolge vom wenig bedeutendsten zum bedeutendsten Byte gespeichert.
+- **Big Endian**: Die Bytes werden in der Reihenfolge vom bedeutendsten zum wenig bedeutendsten Byte gespeichert.
+
+Die Wahl der Endianess beeinflusst, wie ein Wert im Speicher gelesen und interpretiert wird. Dies kann insbesondere bei der Datenübertragung zwischen Systemen mit unterschiedlicher Endianess zu Problemen führen, weshalb oft eine Endianess-Konversion notwendig ist.
